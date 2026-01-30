@@ -75,16 +75,16 @@ graph TD
     B -->|Custom Topic| D[User Input]
     C --> E[Data Prep]
     D --> E
-    E -->|Context| F[LLM Engine (Gemini/Groq)]
+    E -->|Context| F["LLM Engine (Gemini/Groq)"]
     F -->|Generate| G[JSON Script]
     G --> H[Asset Pipeline]
     H -->|TTS| I[Audio Segments]
     H -->|Pexels API| J[Stock Videos]
-    H -->|SD/DALL-E| K[AI Images (Fallback)]
-    I --> L[Video Compositor (MoviePy)]
+    H -->|SD/DALL-E| K["AI Images (Fallback)"]
+    I --> L["Video Compositor (MoviePy)"]
     J --> L
     K --> L
-    L -->|Render| M[Final Vertical Video (.mp4)]
+    L -->|Render| M["Final Vertical Video (.mp4)"]
 ```
 
 ### Data Flow Diagram (DFD)
