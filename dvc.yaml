@@ -1,0 +1,29 @@
+stages:
+  ingestion:
+    cmd: jupyter nbconvert --to notebook --execute notebooks/01_Ingestion.ipynb --inplace
+    outs:
+    - data/raw_news.json
+
+  synthesis:
+    cmd: jupyter nbconvert --to notebook --execute notebooks/02_Scripting.ipynb --inplace
+    deps:
+    - data/raw_news.json
+    - notebooks/02_Scripting.ipynb
+    outs:
+    - data/script.json
+
+  assets:
+    cmd: jupyter nbconvert --to notebook --execute notebooks/03_Assets.ipynb --inplace
+    deps:
+    - data/script.json
+    - notebooks/03_Assets.ipynb
+    outs:
+    - assets
+
+  assembly:
+    cmd: jupyter nbconvert --to notebook --execute notebooks/04_Assembly.ipynb --inplace
+    deps:
+    - assets
+    - notebooks/04_Assembly.ipynb
+    outs:
+    - final_video.mp4

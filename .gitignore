@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Environment Variables
+.env
+
+# Generated Content
+data/
+assets/
+reports/
+*.mp4
+*.mp3
+*.jpg
+*.png
+
+# DVC (if used, else ignore if you want to keep data local only)
+# data/ usually covered above
+
+# Documentation to ignore
+DEPLOYMENT_GUIDE.md
+report.md

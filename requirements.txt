@@ -1,0 +1,10 @@
+streamlit
+google-generativeai
+requests
+edge-tts
+moviepy
+pillow
+numpy
+trafilatura
+feedparser
+mutagen

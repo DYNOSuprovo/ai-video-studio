@@ -1,0 +1,45 @@
+schema: '2.0'
+stages:
+  ingestion:
+    cmd: jupyter nbconvert --to notebook --execute notebooks/01_Ingestion.ipynb 
+      --inplace
+    outs:
+    - path: data/raw_news.json
+      hash: md5
+      md5: d751713988987e9331980363e24189ce
+      size: 2
+  synthesis:
+    cmd: jupyter nbconvert --to notebook --execute notebooks/02_Scripting.ipynb 
+      --inplace
+    deps:
+    - path: data/raw_news.json
+      hash: md5
+      md5: d751713988987e9331980363e24189ce
+      size: 2
+    - path: notebooks/02_Scripting.ipynb
+      hash: md5
+      md5: a6dde655b9f0ad52fdd1bf2221e59744
+      size: 6232
+    outs:
+    - path: data/script.json
+      hash: md5
+      md5: d751713988987e9331980363e24189ce
+      size: 2
+  assets:
+    cmd: jupyter nbconvert --to notebook --execute notebooks/03_Assets.ipynb 
+      --inplace
+    deps:
+    - path: data/script.json
+      hash: md5
+      md5: d751713988987e9331980363e24189ce
+      size: 2
+    - path: notebooks/03_Assets.ipynb
+      hash: md5
+      md5: 02c3f56b142afe96ae1fb4af8349ae52
+      size: 4648
+    outs:
+    - path: assets
+      hash: md5
+      md5: d751713988987e9331980363e24189ce.dir
+      size: 0
+      nfiles: 0
