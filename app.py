@@ -112,7 +112,8 @@ with st.sidebar:
     api_key_input = st.text_input("Gemini API Key", value=default_gemini, type="password")
     groq_key_input = st.text_input("Groq API Key (Optional)", value=default_groq, type="password")
     
-    st.info("API Key loaded" if api_key_input or groq_key_input else "Please provide an API Key")
+    # st.info("API Key loaded" if api_key_input or groq_key_input else "Please provide an API Key")
+
 
     pexels_key_input = st.text_input("Pexels API Key (Optional for Stock Video)", value=default_pexels, type="password")
 
