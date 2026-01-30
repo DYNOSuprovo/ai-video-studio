@@ -168,7 +168,10 @@ with col2:
             if not script:
                 st.error("Script generation failed.")
                 st.stop()
-            st.json(script)
+            # st.json(script) # Debug only
+            with st.expander("View Generated Script (Details)"):
+                st.json(script)
+
             with open(os.path.join(DATA_DIR, "script.json"), "w") as f:
                 json.dump([script], f)
             progress_bar.progress(30)
