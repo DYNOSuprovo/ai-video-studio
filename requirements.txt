@@ -2,7 +2,7 @@ streamlit
 google-generativeai
 requests
 edge-tts
-moviepy
+moviepy<2.0.0
 pillow
 numpy
 trafilatura
