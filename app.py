@@ -105,17 +105,22 @@ with st.sidebar:
         return os.environ.get(key_name, "")
 
     # Load keys
-    default_gemini = get_api_key("GEMINI_API_KEY")
-    default_groq = get_api_key("GROQ_API_KEY") 
-    default_pexels = get_api_key("PEXELS_API_KEY")
+    api_key_input = get_api_key("GEMINI_API_KEY")
+    groq_key_input = get_api_key("GROQ_API_KEY") 
+    pexels_key_input = get_api_key("PEXELS_API_KEY")
 
-    api_key_input = st.text_input("Gemini API Key", value=default_gemini, type="password")
-    groq_key_input = st.text_input("Groq API Key (Optional)", value=default_groq, type="password")
+    # Display secure status
+    if api_key_input:
+        st.success("✅ Gemini API Active")
+    else:
+        st.error("❌ Gemini API Missing")
+
+    if groq_key_input:
+        st.success("✅ Groq API Active")
     
-    # st.info("API Key loaded" if api_key_input or groq_key_input else "Please provide an API Key")
+    if pexels_key_input:
+        st.success("✅ Pexels API Active")
 
-
-    pexels_key_input = st.text_input("Pexels API Key (Optional for Stock Video)", value=default_pexels, type="password")
 
     
     use_pexels = st.checkbox("Use Stock Video (Real Footages)", value=True if pexels_key_input else False)
