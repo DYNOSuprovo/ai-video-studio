@@ -99,29 +99,23 @@ with col_title:
 # Sidebar for Config
 with st.sidebar:
     st.header("Configuration")
-    api_key_input = st.text_input("Gemini API Key", type="password")
-    # Try load from env if empty
-    if not api_key_input and os.path.exists(".env"):
-        with open(".env") as f:
-            for line in f:
-                if "GEMINI_API_KEY" in line:
-                    api_key_input = line.split("=")[1].strip()
-    
-    groq_key_input = st.text_input("Groq API Key (Optional)", type="password")
-    if not groq_key_input and os.path.exists(".env"):
-            with open(".env") as f:
-                for line in f:
-                    if "GROQ_API_KEY" in line:
-                        groq_key_input = line.split("=")[1].strip()
+    def get_api_key(key_name):
+        if key_name in st.secrets:
+            return st.secrets[key_name]
+        return os.environ.get(key_name, "")
 
+    # Load keys
+    default_gemini = get_api_key("GEMINI_API_KEY")
+    default_groq = get_api_key("GROQ_API_KEY") 
+    default_pexels = get_api_key("PEXELS_API_KEY")
+
+    api_key_input = st.text_input("Gemini API Key", value=default_gemini, type="password")
+    groq_key_input = st.text_input("Groq API Key (Optional)", value=default_groq, type="password")
+    
     st.info("API Key loaded" if api_key_input or groq_key_input else "Please provide an API Key")
 
-    pexels_key_input = st.text_input("Pexels API Key (Optional for Stock Video)", type="password")
-    if not pexels_key_input and os.path.exists(".env"):
-        with open(".env") as f:
-            for line in f:
-                if "PEXELS_API_KEY" in line:
-                    pexels_key_input = line.split("=")[1].strip()
+    pexels_key_input = st.text_input("Pexels API Key (Optional for Stock Video)", value=default_pexels, type="password")
+
     
     use_pexels = st.checkbox("Use Stock Video (Real Footages)", value=True if pexels_key_input else False)
 
