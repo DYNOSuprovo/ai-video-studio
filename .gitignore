@@ -6,6 +6,7 @@ venv/
 
 # Environment Variables
 .env
+.streamlit/secrets.toml
 
 # Generated Content
 data/
